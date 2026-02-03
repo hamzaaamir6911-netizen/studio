@@ -1,3 +1,106 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "cat_clothing",
+      "description": "Elegant clothing rack",
+      "imageUrl": "https://images.unsplash.com/photo-1551232864-3f0890e580d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbG90aGluZyUyMHJhY2t8ZW58MHx8fHwxNzcwMDQzNzAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clothing rack"
+    },
+    {
+      "id": "cat_jewelry",
+      "description": "Close-up of a necklace",
+      "imageUrl": "https://images.unsplash.com/photo-1623321673989-830eff0fd59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnb2xkJTIwbmVja2xhY2V8ZW58MHx8fHwxNzcwMDM0MjY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gold necklace"
+    },
+    {
+      "id": "cat_accessories",
+      "description": "Stylish handbag and sunglasses",
+      "imageUrl": "https://images.unsplash.com/photo-1612902457652-33aff0a641fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmYXNoaW9uJTIwYWNjZXNzb3JpZXN8ZW58MHx8fHwxNzcwMDMzNzM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fashion accessories"
+    },
+    {
+      "id": "prod1_img1",
+      "description": "Front view of an embroidered kurta",
+      "imageUrl": "https://images.unsplash.com/photo-1564587081321-62723533e3c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbWJyb2lkZXJlZCUyMGRyZXNzfGVufDB8fHx8MTc3MDEzNjMyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "embroidered dress"
+    },
+    {
+      "id": "prod1_img2",
+      "description": "Detail of the embroidery on a kurta",
+      "imageUrl": "https://images.unsplash.com/photo-1763400126795-d83e07d3449e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbWJyb2lkZXJ5JTIwZGV0YWlsfGVufDB8fHx8MTc3MDEzNjMyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "embroidery detail"
+    },
+    {
+      "id": "prod2_img1",
+      "description": "Elegant gold-plated earrings with pearls",
+      "imageUrl": "https://images.unsplash.com/photo-1701450723521-788008974862?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZWFybCUyMGVhcnJpbmdzfGVufDB8fHx8MTc3MDA1NjY3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pearl earrings"
+    },
+    {
+      "id": "prod3_img1",
+      "description": "Front view of a men's silk waistcoat",
+      "imageUrl": "https://images.unsplash.com/photo-1607300110843-b3994a493d98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzaWxrJTIwd2Fpc3Rjb2F0fGVufDB8fHx8MTc3MDEzNjMyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silk waistcoat"
+    },
+    {
+      "id": "prod4_img1",
+      "description": "A luxurious pashmina shawl with intricate patterns",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1561057657-ef2963ef83a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwYXNobWluYSUyMHNoYXdsfGVufDB8fHx8MTc3MDEzNjMyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pashmina shawl"
+    },
+    {
+      "id": "prod5_img1",
+      "description": "A pair of traditional leather khussa shoes",
+      "imageUrl": "https://images.unsplash.com/photo-1673332655640-d97338b1c6b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsZWF0aGVyJTIwc2hvZXN8ZW58MHx8fHwxNzcwMDU0NzUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather shoes"
+    },
+    {
+      "id": "prod6_img1",
+      "description": "A vibrant printed lawn suit for women",
+      "imageUrl": "https://images.unsplash.com/photo-1517970640957-23d07d5ed08c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmbG9yYWwlMjBkcmVzc3xlbnwwfHx8fDE3NzAxMTA2NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "floral dress"
+    },
+    {
+      "id": "prod7_img1",
+      "description": "A silver choker necklace with blue stones",
+      "imageUrl": "https://images.unsplash.com/photo-1635607135813-660cad9deb3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzaWx2ZXIlMjBuZWNrbGFjZXxlbnwwfHx8fDE3NzAxMDY5MDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silver necklace"
+    },
+    {
+      "id": "prod8_img1",
+      "description": "A structured leather handbag in a neutral tone",
+      "imageUrl": "https://images.unsplash.com/photo-1575295912464-fcfd1186d11d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsZWF0aGVyJTIwaGFuZGJhZ3xlbnwwfHx8fDE3NzAwNDY3NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather handbag"
+    },
+    {
+      "id": "prod9_img1",
+      "description": "A tailored bandhgala jacket for men",
+      "imageUrl": "https://images.unsplash.com/photo-1725106028906-695e57afb682?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtZW4lMjBqYWNrZXR8ZW58MHx8fHwxNzcwMTM2MzI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "men jacket"
+    },
+    {
+      "id": "prod10_img1",
+      "description": "A flowing chiffon sari with light embroidery",
+      "imageUrl": "https://picsum.photos/seed/p10a/800/1200",
+      "imageHint": "chiffon sari"
+    },
+    {
+      "id": "prod11_img1",
+      "description": "A set of stacked bangles with enamel work",
+      "imageUrl": "https://images.unsplash.com/photo-1724720790533-160d6280fd81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb2xvcmZ1bCUyMGJhbmdsZXN8ZW58MHx8fHwxNzcwMDU3MTMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "colorful bangles"
+    },
+    {
+      "id": "prod12_img1",
+      "description": "A pair of classic linen trousers for men",
+      "imageUrl": "https://images.unsplash.com/photo-1766113484930-1bd5779b3a7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsaW5lbiUyMHRyb3VzZXJzfGVufDB8fHx8MTc3MDEzNjMyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "linen trousers"
+    },
+    {
+      "id": "hero_image",
+      "description": "A stylish fashion model in a vibrant outfit",
+      "imageUrl": "https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYXNoaW9uJTIwbW9kZWx8ZW58MHx8fHwxNzcwMDk2NDY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fashion model"
+    }
+  ]
 }
