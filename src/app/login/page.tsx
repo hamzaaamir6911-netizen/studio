@@ -26,9 +26,13 @@ export default function LoginPage() {
       toast({ title: 'Login Successful', description: "Welcome back!" });
       router.push('/');
     } catch (error: any) {
+      let description = error.message || 'An unexpected error occurred.';
+      if (error.code === 'auth/invalid-api-key') {
+        description = 'The Firebase API Key is not valid. Please check the .env file and ensure it contains the correct credentials from your Firebase project. You may need to restart the server after updating the file.';
+      }
       toast({
         title: 'Login Failed',
-        description: error.message || 'An unexpected error occurred.',
+        description,
         variant: 'destructive',
       });
       setIsLoading(false);

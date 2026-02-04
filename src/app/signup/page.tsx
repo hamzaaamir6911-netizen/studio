@@ -38,9 +38,13 @@ export default function SignupPage() {
       toast({ title: 'Account Created', description: "Welcome to Rang Bazaar!" });
       router.push(role === 'seller' ? '/seller/dashboard' : '/');
     } catch (error: any) {
+      let description = error.message || 'An unexpected error occurred.';
+      if (error.code === 'auth/invalid-api-key') {
+        description = 'The Firebase API Key is not valid. Please check the .env file and ensure it contains the correct credentials from your Firebase project. You may need to restart the server after updating the file.';
+      }
       toast({
         title: 'Signup Failed',
-        description: error.message || 'An unexpected error occurred.',
+        description,
         variant: 'destructive',
       });
       setIsLoading(false);
