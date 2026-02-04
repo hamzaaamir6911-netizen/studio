@@ -24,7 +24,7 @@ export function HeroSection() {
                     The Art of Style
                 </h1>
                 <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-                    Explore our curated collection of exquisite designs and timeless fashion.
+                    Find your style, find your fashion.
                 </p>
                 <Button asChild size="lg" className="mt-8 bg-primary/80 hover:bg-primary border-primary-foreground/20 border">
                     <Link href="/products">Shop The New Collection</Link>
