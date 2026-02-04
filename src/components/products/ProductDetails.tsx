@@ -8,8 +8,9 @@ import { Label } from '@/components/ui/label';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
 import { useToast } from '@/hooks/use-toast';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 type ProductDetailsProps = {
   product: Product;
@@ -97,14 +98,20 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         </RadioGroup>
       </div>
 
-      <div className="mt-8 flex gap-4">
-        <Button size="lg" className="flex-1" onClick={handleAddToCart}>
+      <div className="mt-8 flex flex-wrap gap-2">
+        <Button size="lg" className="flex-grow min-w-[170px]" onClick={handleAddToCart}>
           <ShoppingCart className="mr-2 h-5 w-5" />
           Add to Cart
         </Button>
-        <Button size="lg" variant="outline" onClick={handleWishlistToggle}>
+        <Button size="lg" variant="outline" className="flex-grow min-w-[170px]" onClick={handleWishlistToggle}>
           <Heart className={cn("mr-2 h-5 w-5", productInWishlist && "fill-destructive text-destructive")} />
           {productInWishlist ? 'In Wishlist' : 'Wishlist'}
+        </Button>
+        <Button size="lg" variant="outline" className="flex-grow min-w-[170px]" asChild>
+          <Link href={`/try-on?productId=${product.id}`}>
+            <Sparkles className="mr-2 h-5 w-5" />
+            Virtual Try-On
+          </Link>
         </Button>
       </div>
     </div>
