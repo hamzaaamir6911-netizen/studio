@@ -8,9 +8,11 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { getAlternativeSearchTerms } from '@/lib/actions';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 
 const initialState = {
   alternativeSearchTerms: [],
+  error: null as string | null,
 };
 
 function SubmitButton() {
@@ -58,6 +60,12 @@ export function AiSearchAssistant({ searchTerm }: { searchTerm: string }) {
               ))}
             </div>
           </div>
+        )}
+        {state.error && (
+            <Alert variant="destructive" className="mt-4">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{state.error}</AlertDescription>
+            </Alert>
         )}
       </CardContent>
     </Card>

@@ -11,8 +11,15 @@ export async function getAlternativeSearchTerms(
 ) {
   const productDescription = formData.get('productDescription') as string;
 
+    if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'your-gemini-api-key') {
+    return { 
+      alternativeSearchTerms: [], 
+      error: 'The Gemini API key is missing. Please add it to your .env file. You can get a free key from Google AI Studio.' 
+    };
+  }
+
   if (!productDescription) {
-    return { alternativeSearchTerms: [] };
+    return { alternativeSearchTerms: [], error: null };
   }
 
   try {
@@ -20,14 +27,21 @@ export async function getAlternativeSearchTerms(
       searchTerm,
       productDescription,
     });
-    return { alternativeSearchTerms: result.alternativeSearchTerms || [] };
+    return { alternativeSearchTerms: result.alternativeSearchTerms || [], error: null };
   } catch (error) {
     console.error('AI search assistance failed:', error);
-    return { alternativeSearchTerms: [] };
+    return { 
+      alternativeSearchTerms: [], 
+      error: 'Failed to get AI suggestions. Please try again later.'
+    };
   }
 }
 
 export async function handleVirtualTryOn(prevState: any, formData: FormData) {
+  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'your-gemini-api-key') {
+    return { tryOnImage: null, error: 'The Gemini API key is missing. Please add it to the .env file. You can get a free key from Google AI Studio.' };
+  }
+  
   const userImageDataUri = formData.get('userImage') as string;
   const productId = formData.get('productId') as string;
   
