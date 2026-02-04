@@ -16,7 +16,6 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 const missingKeyError = "Firebase API key is not configured. Please add NEXT_PUBLIC_FIREBASE_API_KEY to your .env file. You can get one from your Firebase project settings.";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
