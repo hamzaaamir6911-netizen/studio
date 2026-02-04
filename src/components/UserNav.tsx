@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import Link from 'next/link';
-import { LogOut, Package, User } from 'lucide-react';
+import { LogOut, Package, User, LayoutDashboard } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 export function UserNav() {
@@ -61,6 +61,14 @@ export function UserNav() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {user.role === 'seller' && (
+            <DropdownMenuItem asChild>
+                <Link href="/seller/dashboard">
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    <span>Seller Dashboard</span>
+                </Link>
+            </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Link href="/orders">
             <Package className="mr-2 h-4 w-4" />

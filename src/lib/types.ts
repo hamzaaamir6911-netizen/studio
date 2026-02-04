@@ -4,16 +4,11 @@ export type Product = {
   description: string;
   price: number;
   images: string[];
-  category: string;
   sizes: string[];
   colors: { name: string; hex: string }[];
   isFeatured?: boolean;
-};
-
-export type Category = {
-  id: string;
-  name: string;
-  image: string;
+  sellerId: string;
+  createdAt?: any; // for firestore serverTimestamp
 };
 
 export type CartItem = {
@@ -44,4 +39,5 @@ export type AppUser = {
   email: string | null;
   displayName: string | null;
   photoURL?: string | null;
+  role?: 'buyer' | 'seller';
 };

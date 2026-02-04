@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { ProductGrid } from '@/components/shared/ProductGrid';
-import { getAllProducts, getAllCategories, getAllSizes } from '@/lib/placeholder-data';
+import { getAllSizes } from '@/lib/placeholder-data';
 import type { Product } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -10,28 +10,30 @@ import { Slider } from '@/components/ui/slider';
 import { ListFilter } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { collection } from 'firebase/firestore';
+import { db } from '@/lib/firebase/config';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ProductsPage() {
-  const allProducts = useMemo(() => getAllProducts(), []);
-  const allCategories = useMemo(() => getAllCategories(), []);
+  const [allProducts, loading, error] = useCollectionData(collection(db, 'products'), { idField: 'id' });
+  
   const allSizes = useMemo(() => getAllSizes(), []);
   
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(allProducts);
-  const [category, setCategory] = useState('all');
+  const [filteredProducts, setFilteredProducts] = useState<Product[] | undefined>(undefined);
   const [priceRange, setPriceRange] = useState([500]);
   const [sort, setSort] = useState('featured');
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
 
-  const maxPrice = useMemo(() => Math.max(...allProducts.map(p => p.price)), [allProducts]);
+  const maxPrice = useMemo(() => {
+    if (!allProducts) return 500;
+    return Math.max(...allProducts.map(p => p.price), 500)
+  }, [allProducts]);
   
   const applyFilters = () => {
-    let products = [...allProducts];
+    if (!allProducts) return;
+    let products = [...allProducts] as Product[];
 
-    // Filter by category
-    if (category !== 'all') {
-      products = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
-    }
-    
     // Filter by size
     if (selectedSizes.length > 0) {
       products = products.filter(p => p.sizes.some(size => selectedSizes.includes(size)));
@@ -51,48 +53,28 @@ export default function ProductsPage() {
 
     setFilteredProducts(products);
   };
+  
+  const productsToDisplay = filteredProducts === undefined ? allProducts : filteredProducts;
 
   const handleClear = () => {
-    setCategory('all');
     setPriceRange([maxPrice]);
     setSort('featured');
     setSelectedSizes([]);
-    setFilteredProducts(allProducts);
+    setFilteredProducts(undefined);
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold font-headline">All Products</h1>
-        <p className="mt-2 text-lg text-muted-foreground">Discover your next favorite piece from our collection.</p>
+        <p className="mt-2 text-lg text-muted-foreground">Discover your next favorite piece from our clothing collection.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="w-full md:w-64 lg:w-72">
           <CardWithApplyingFilters title='Filters' onApply={applyFilters} onClear={handleClear}>
             <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold mb-2">Category</h3>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between">
-                      {category === 'all' ? 'All Categories' : allCategories.find(c => c.name.toLowerCase() === category)?.name}
-                      <ListFilter className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56">
-                    <DropdownMenuLabel>Filter by Category</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuRadioGroup value={category} onValueChange={setCategory}>
-                      <DropdownMenuRadioItem value="all">All Categories</DropdownMenuRadioItem>
-                      {allCategories.map(cat => (
-                        <DropdownMenuRadioItem key={cat.id} value={cat.name.toLowerCase()}>{cat.name}</DropdownMenuRadioItem>
-                      ))}
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-
+              {/* Category filter removed */}
               <div>
                 <h3 className="font-semibold mb-2">Size</h3>
                 <div className="grid grid-cols-3 gap-y-2 gap-x-4">
@@ -150,13 +132,17 @@ export default function ProductsPage() {
         </aside>
 
         <main className="flex-1">
-          {filteredProducts.length > 0 ? (
-            <ProductGrid products={filteredProducts} />
+          {loading && <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => <Skeleton key={i} className="h-96 w-full" />)}
+        </div>}
+          {productsToDisplay && productsToDisplay.length > 0 ? (
+            <ProductGrid products={productsToDisplay as Product[]} />
           ) : (
-            <div className="text-center py-16">
-              <p className="text-lg text-muted-foreground">No products match your filters.</p>
+            !loading && <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground">No products found.</p>
             </div>
           )}
+          {error && <p className="text-destructive">Error: {error.message}</p>}
         </main>
       </div>
     </div>

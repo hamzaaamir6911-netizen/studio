@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, ShoppingBag, Heart, Menu } from 'lucide-react';
+import { Search, ShoppingBag, Heart, Menu, LayoutDashboard } from 'lucide-react';
 import { Button } from './ui/button';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
@@ -10,15 +10,14 @@ import { MobileNav } from './MobileNav';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from './ui/input';
+import { useAuth } from '@/hooks/useAuth';
 
 const navLinks = [
   { href: '/products', label: 'All Products' },
-  { href: '/products?category=clothing', label: 'Clothing' },
-  { href: '/products?category=jewelry', label: 'Jewelry' },
-  { href: '/products?category=accessories', label: 'Accessories' },
 ];
 
 export function Header() {
+  const { user } = useAuth();
   const { items: cartItems } = useCart();
   const { wishlist } = useWishlist();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,6 +33,8 @@ export function Header() {
       router.push(`/search?q=${searchQuery}`);
     }
   };
+  
+  const sellerNavLinks = user?.role === 'seller' ? [{ href: '/seller/dashboard', label: 'Seller Dashboard' }] : [];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -63,6 +64,12 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          {user?.role === 'seller' && (
+             <Link href="/seller/dashboard" className="transition-colors hover:text-primary flex items-center">
+                <LayoutDashboard className="mr-2 h-4 w-4" />
+                Seller Dashboard
+             </Link>
+          )}
         </nav>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
@@ -107,7 +114,7 @@ export function Header() {
       <MobileNav
         isOpen={mobileMenuOpen}
         setIsOpen={setMobileMenuOpen}
-        navLinks={navLinks}
+        navLinks={[...navLinks, ...sellerNavLinks]}
       />
     </header>
   );

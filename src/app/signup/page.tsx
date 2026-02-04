@@ -9,11 +9,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 export default function SignupPage() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState<'buyer' | 'seller'>('buyer');
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useAuth();
   const router = useRouter();
@@ -31,9 +34,9 @@ export default function SignupPage() {
     }
     setIsLoading(true);
     try {
-      await signup(email, password);
+      await signup(email, password, name, role);
       toast({ title: 'Account Created', description: "Welcome to Rang Bazaar!" });
-      router.push('/');
+      router.push(role === 'seller' ? '/seller/dashboard' : '/');
     } catch (error: any) {
       toast({
         title: 'Signup Failed',
@@ -53,6 +56,18 @@ export default function SignupPage() {
         </CardHeader>
         <form onSubmit={handleSignup}>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Your Name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -86,6 +101,19 @@ export default function SignupPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={isLoading}
               />
+            </div>
+             <div className="space-y-2">
+                <Label>Account Type</Label>
+                <RadioGroup defaultValue="buyer" onValueChange={(value) => setRole(value as 'buyer' | 'seller')} className="flex space-x-4">
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="buyer" id="buyer" />
+                        <Label htmlFor="buyer">Buyer</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="seller" id="seller" />
+                        <Label htmlFor="seller">Seller</Label>
+                    </div>
+                </RadioGroup>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
